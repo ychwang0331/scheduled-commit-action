@@ -286,7 +286,6 @@ library(purrr)
     time5<-"--"
     scale5<-"--"
   }
-  
   # Website 6
   # Used to calculate the Inversion Strength for the next day
   # Website is updated at 7AM every day 
@@ -319,7 +318,7 @@ library(purrr)
   colnames(six)<-c("Type","Pressure (mb)","Height (m)","Temperature (C)","Dew Point (C)","Wind Direction (Degrees)","Wind Speed (Knots)") # Give each column their names and units
   tempdiffsix<-diff(unlist(six[,4])) # Create a differenced list of the temperature column, each entry subtracted from the next
   surfaceinversion2<-six[which(tempdiffsix<0),4][[1]]-unlist(six[,4])[1] # If the temperature increases as height increases, take the peak temperature and subtract it from the surface temperature to get Surface Inversion Strength
-  inversiondepth2<-as.numeric(six[which(tempdiff<0),3][[1]])-as.numeric(unlist(six[,3])[1]) # Take the height of the peak temperature and subtract the surface height (359 m) to get Inversion Depth
+  inversiondepth2<-as.numeric(six[which(tempdiffsix<0),3][[1]])-as.numeric(unlist(six[,3])[1]) # Take the height of the peak temperature and subtract the surface height (359 m) to get Inversion Depth
   
   sixout<-function(x){ # Create a description value for how strong the Surface Inversion Strength is based on its value
     if (x==0){
@@ -332,7 +331,6 @@ library(purrr)
       return("Moderate")
     } else return("Strong")
   }
-  
   # generate current system time for report's title
   currentDate <- Sys.Date()
   title <- paste("Air Quality Forecast and Dispersion Outlook of Allegheny County, Pennsylvania for", as.character(currentDate))
