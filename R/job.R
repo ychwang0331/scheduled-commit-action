@@ -3,10 +3,12 @@ install.packages("curl")
 install.packages("httr")
 install.packages("rvest")
 install.packages("dplyr")
+install.packages("purrr")
 library(stringr)
 library(curl)
 library(rvest)
 library(dplyr)
+library(purrr)
 
 
   # 1, webscraping processes
