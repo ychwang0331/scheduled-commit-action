@@ -381,4 +381,4 @@ adi <- data.frame(
   "Wind(dir,mph)"=c(todaymorningwind,todayafternoonwind,todayeveningwind,todayovernightwind,tomorrowmorningwind,tomorrowafternoonwind))
 
 output = c(aqi,aqi_forecast,adi,temp5,depth5,time5,scale5,inversion5,title)
-save(output, file = paste0("data-raw/data_", make.names(strsplit(as.character(Sys.time()),":")[[1]][1]), ".Rda"))
+save(output, file = paste0("data-raw/data_", make.names(strsplit(as.character(Sys.time()),":")[[1]][1]), ".txt"))
