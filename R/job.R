@@ -380,5 +380,111 @@ adi <- data.frame(
   "Surface Inversion Strength" = c(fivestrength(surfaceinversion),"--","--","--",sixout(surfaceinversion2),"--"),
   "Wind(dir,mph)"=c(todaymorningwind,todayafternoonwind,todayeveningwind,todayovernightwind,tomorrowmorningwind,tomorrowafternoonwind))
 
-output = c(aqi,aqi_forecast,adi,temp5,depth5,time5,scale5,inversion5,title)
-save(output, file = paste0("data-raw/data_", make.names(strsplit(as.character(Sys.time()),":")[[1]][1]), ".txt"))
+result = c(aqi,aqi_forecast,adi,temp5,depth5,time5,scale5,inversion5,title)
+
+output = ""
+AQI_pitt_today = paste("\\newcommand\\AQIPittToday{",todaypitt,"}",sep="")
+output = paste(output,AQI_pitt_today,sep="\n")
+
+AQI_pitt_tom = paste("\\newcommand\\AQIPittTom{",tomorrowpitt,"}",sep="")
+output = paste(output,AQI_pitt_tom,sep="\n")
+
+AQI_LC_today = paste("\\newcommand\\AQILCToday{",todayLC,"}",sep="")
+output = paste(output,AQI_LC_today,sep="\n")
+
+AQI_LC_tom = paste("\\newcommand\\AQILCTom{",tomorrowLC,"}",sep="")
+output = paste(output,AQI_LC_tom,sep="\n")
+
+
+AQI_pitt_today_cate = paste("\\newcommand\\AQIPittTodayCate{",result$Pittsburgh.Area[1],"}",sep="")
+output = paste(output,AQI_pitt_today_cate,sep="\n")
+
+AQI_pitt_tom_cate = paste("\\newcommand\\AQIPittTomCate{",result$Pittsburgh.Area[2],"}",sep="")
+output = paste(output,AQI_pitt_tom_cate,sep="\n")
+
+AQI_LC_today_cate = paste("\\newcommand\\AQILCTodayCate{",result$Liberty.Clairton.Area[1],"}",sep="")
+output = paste(output,AQI_LC_today_cate,sep="\n")
+
+AQI_LC_tom_cate = paste("\\newcommand\\AQILCTomCate{",result$Liberty.Clairton.Area[2],"}",sep="")
+output = paste(output,AQI_LC_tom_cate,sep="\n")
+
+discription = paste("\\newcommand\\Discriptions{",result[[4]][1],"}",sep="")
+output = paste(output,discription,sep="\n")
+
+ADI1 = paste("\\newcommand\\ADI1{",result$Atmospheric.Dispersion.Index[1],"}",sep="")
+output = paste(output,ADI1,sep="\n")
+
+ADI2 = paste("\\newcommand\\ADI2{",result$Atmospheric.Dispersion.Index[2],"}",sep="")
+output = paste(output,ADI2,sep="\n")
+
+ADI3 = paste("\\newcommand\\ADI3{",result$Atmospheric.Dispersion.Index[3],"}",sep="")
+output = paste(output,ADI3,sep="\n")
+
+ADI4 = paste("\\newcommand\\ADI4{",result$Atmospheric.Dispersion.Index[4],"}",sep="")
+output = paste(output,ADI4,sep="\n")
+
+ADI5 = paste("\\newcommand\\ADI5{",result$Atmospheric.Dispersion.Index[5],"}",sep="")
+output = paste(output,ADI5,sep="\n")
+
+ADI6 = paste("\\newcommand\\ADI6{",result$Atmospheric.Dispersion.Index[6],"}",sep="")
+output = paste(output,ADI6,sep="\n")
+
+SIS1 = paste("\\newcommand\\SIS1{",result$Surface.Inversion.Strength[1],"}",sep="")
+output = paste(output,SIS1,sep="\n")
+
+SIS2 = paste("\\newcommand\\SIS2{",result$Surface.Inversion.Strength[2],"}",sep="")
+output = paste(output,SIS2,sep="\n")
+
+SIS3 = paste("\\newcommand\\SIS3{",result$Surface.Inversion.Strength[3],"}",sep="")
+output = paste(output,SIS3,sep="\n")
+
+SIS4 = paste("\\newcommand\\SIS4{",result$Surface.Inversion.Strength[4],"}",sep="")
+output = paste(output,SIS4,sep="\n")
+
+SIS5 = paste("\\newcommand\\SIS5{",result$Surface.Inversion.Strength[5],"}",sep="")
+output = paste(output,SIS5,sep="\n")
+
+SIS6 = paste("\\newcommand\\SIS6{",result$Surface.Inversion.Strength[6],"}",sep="")
+output = paste(output,SIS6,sep="\n")
+
+Wind1 = paste("\\newcommand\\Wind1{",result$Wind.dir.mph.[1],"}",sep="")
+output = paste(output,Wind1,sep="\n")
+
+Wind2 = paste("\\newcommand\\Wind2{",result$Wind.dir.mph.[2],"}",sep="")
+output = paste(output,Wind2,sep="\n")
+
+Wind3 = paste("\\newcommand\\Wind3{",result$Wind.dir.mph.[3],"}",sep="")
+output = paste(output,Wind3,sep="\n")
+
+Wind4 = paste("\\newcommand\\Wind4{",result$Wind.dir.mph.[4],"}",sep="")
+output = paste(output,Wind4,sep="\n")
+
+Wind5 = paste("\\newcommand\\Wind5{",result$Wind.dir.mph.[5],"}",sep="")
+output = paste(output,Wind5,sep="\n")
+
+Wind6 = paste("\\newcommand\\Wind6{",result$Wind.dir.mph.[6],"}",sep="")
+output = paste(output,Wind6,sep="\n")
+
+Temp = paste("\\newcommand\\Temp{",result[[9]][1],"}",sep="")
+output = paste(output,Temp,sep="\n")
+
+Depth = paste("\\newcommand\\Depth{",result[[10]][1],"}",sep="")
+output = paste(output,Depth,sep="\n")
+
+Time = paste("\\newcommand\\Time{",result[[11]][1],"}",sep="")
+output = paste(output,Time,sep="\n")
+
+Scale = paste("\\newcommand\\Scale{",result[[12]][1],"}",sep="")
+output = paste(output,Scale,sep="\n")
+
+Inversion = paste("\\newcommand\\Inversion{",result[[13]][1],"}",sep="")
+output = paste(output,Inversion,sep="\n")
+
+Title = paste("\\newcommand\\Title{",result[[14]][1],"}",sep="")
+output = paste(output,Title,sep="\n")
+
+
+
+writeLines(output,paste0("data-raw/data_", make.names(strsplit(as.character(Sys.time()),":")[[1]][1]), ".tex"))
+
+
